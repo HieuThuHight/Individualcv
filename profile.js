@@ -92,34 +92,34 @@ function update() {
 
 // Music
 const songs = [
-  { name: "Call Me Now", file: "../music/Call Me Now.mp3" },
+  { name: "Call Me Now", file: "music/Call_Me_Now.mp3" },
   {
     name: "Lost Frequencies",
-    file: "../music/Reality - Lost Frequencies _ Lyrics + Vietsub. [O8FYdln-F8w].mp3",
+    file: "music/Reality.mp3",
   },
   {
     name: "Scars To Your Beautiful",
-    file: "../music/ScarsToYourBeautiful.mp3",
+    file: "music/ScarsToYourBeautiful.mp3",
   },
   {
     name: "Paper short love",
-    file: "../music/Paper Short Love.mp3",
+    file: "music/Paper_Short_Love.mp3",
   },
   {
     name: "We can be together",
-    file: "../music/We Can Be Together.mp3",
+    file: "music/We_Can_Be_Together.mp3",
   },
   {
     name: "Lo người ướt áo",
-    file: "../music/Lo Người Ướt áo.mp3",
+    file: "music/Lo_Người_Ướt_áo.mp3",
   },
   {
     name: "Travel",
-    file: "../music/Travel.mp3",
+    file: "music/Travel.mp3",
   },
   {
     name: "Nơi này có anh",
-    file: "../music/Nơi Này Có Anh.mp3",
+    file: "music/Nơi_Này_Có_Anh.mp3",
   },
 ];
 
