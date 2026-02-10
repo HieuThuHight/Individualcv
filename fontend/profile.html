@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nơi đây có sóng nhạc</title>
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="icon" href="../logo/camera.png" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "i8G4Yz7VkV6VSTshJ",
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="welcome">
+      <h1>Chào mừng bạn đến với website ✨</h1>
+      <p>Click để bắt đầu trải nghiệm nhé 🎧</p>
+      <button id="enterBtn">Bắt đầu</button>
+    </div>
+    <video class="bg-video" autoplay muted loop>
+      <source src="../video/gojo.mp4" type="video/mp4" />
+    </video>
+    <div id="app" class="hidden">
+      <!-- Menu -->
+      <header>
+        <div class="logo-wrap">
+          <div class="menu-toggle" id="menuToggle">
+            <ion-icon name="menu"></ion-icon>
+          </div>
+          <h2 class="logo">@hieuthuhight</h2>
+        </div>
+        <nav class="navigation" id="navMenu">
+          <a href="#"><ion-icon name="home"></ion-icon>HOME</a>
+          <a href="#logo"><ion-icon name="person"></ion-icon>ABOUT</a>
+          <a href="#" onclick="update()"
+            ><ion-icon name="file-tray-full"></ion-icon>PROJECT</a
+          >
+          <a href="#Contact"><ion-icon name="mail"></ion-icon>CONTACT</a>
+        </nav>
+        <button class="btnShare-popup" onclick="update()">
+          <ion-icon name="share-outline"></ion-icon>
+        </button>
+      </header>
+
+      <!-- Hiệu ứng màn hình -->
+      <div class="effect">
+        <button class="nut btnMusic phongto timezoom" id="musicBtn">
+          <span><ion-icon name="musical-notes"></ion-icon></span>
+          <span>Music</span>
+        </button>
+        <button class="nut phongto timezoom snow-btn" id="snowBtn">
+          <span><ion-icon name="snow" class="to-white"></ion-icon></span>
+          <span>Snow</span>
+        </button>
+        <button class="nut phongto timezoom">
+          <span><ion-icon name="star" class="to-white"></ion-icon></span>
+          <span>Star</span>
+        </button>
+        <button class="nut phongto timezoom">
+          <span><ion-icon name="power" class="to-white"></ion-icon></span>
+          <span>OFF</span>
+        </button>
+      </div>
+
+      <!-- music -->
+      <a href="../music/ScarsToYourBeautiful.mp3"></a>
+      <div class="player">
+        <div class="title">
+          <span class="music-icon" id="icon">🎵</span>
+          <span id="title">Tên nhạc</span>
+        </div>
+        <div class="time">
+          <span id="current">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+        <input type="range" id="progress" value="0" />
+
+        <div class="controls">
+          <button id="shuffle">
+            <ion-icon name="shuffle" class="to-white"></ion-icon>
+          </button>
+          <button id="prev">
+            <ion-icon name="play-back" class="to-white"></ion-icon>
+          </button>
+          <button id="play">
+            <ion-icon name="play" class="to-white"></ion-icon>
+          </button>
+          <button id="next">
+            <ion-icon name="play-forward" class="to-white"></ion-icon>
+          </button>
+          <button id="repeat">
+            <ion-icon name="reload" class="to-white"></ion-icon>
+          </button>
+        </div>
+
+        <audio id="audio"></audio>
+      </div>
+      <!-- Tên chính giữa -->
+      <div class="box-center">
+        <h2>@hieuthuhight</h2>
+        <h3>EVERYTHING IS CONNECTED</h3>
+        <div class="centerIcon">
+          <button id="nut_icon">
+            <a href="https://www.facebook.com/hieu.o.617087" target="_blank">
+              <img src="../logo/facebook.png" />
+            </a>
+          </button>
+          <button id="nut_icon">
+            <a href="https://www.youtube.com/@ohieu6998" target="_blank">
+              <img src="../logo/youtube.png" />
+            </a>
+          </button>
+          <button id="nut_icon">
+            <a href="https://github.com/HieuThuHight" target="_blank">
+              <img src="../logo/github.png" />
+            </a>
+          </button>
+          <button id="nut_icon">
+            <a href="https://discord.gg/3zcVsZ5Apk" target="_blank">
+              <img src="../logo/discord.png" />
+            </a>
+          </button>
+          <button id="nut_icon">
+            <a href="https://www.tiktok.com/@miriot7" target="_blank">
+              <img src="../logo/tiktok.png" />
+            </a>
+          </button>
+          <button id="nut_icon">
+            <a href="" target="_blank">
+              <img src="../logo/camera.png" />
+            </a>
+          </button>
+        </div>
+      </div>
+      <!-- Trang cá nhân và thông tin cơ bản -->
+      <div class="info" id="logo">
+        <div class="info-Left">
+          <h2
+            style="
+              margin: 20px 0;
+              text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+            "
+          >
+            SOCIAL MEDIA
+          </h2>
+          <div class="info-icon">
+            <div
+              class="info-link phongto timezoom"
+              onclick="
+                window.open('https://www.facebook.com/hieu.o.617087', '_blank')
+              "
+            >
+              <img src="../logo/facebook.png" class="to-white" />
+              <span style="font-size: 20px; font-weight: 700">Facebook</span>
+              <span>Đỗ Hiếu</span>
+            </div>
+
+            <div
+              class="info-link phongto timezoom"
+              onclick="window.open('https://github.com/HieuThuHight', '_blank')"
+            >
+              <img src="../logo/github.png" class="to-white" />
+              <span style="font-size: 20px; font-weight: 700">Github</span>
+              <span>HieuThuHight</span>
+            </div>
+
+            <div
+              class="info-link phongto timezoom"
+              onclick="
+                window.open('https://www.youtube.com/@ohieu6998', '_blank')
+              "
+            >
+              <img src="../logo/youtube.png" class="to-white" />
+              <span style="font-size: 20px; font-weight: 700">Youtube</span>
+              <span>Hiếu Xiot</span>
+            </div>
+
+            <div
+              class="info-link phongto timezoom"
+              onclick="window.open('https://discord.gg/3zcVsZ5Apk', '_blank')"
+            >
+              <img src="../logo/discord.png" class="to-white" />
+              <span style="font-size: 20px; font-weight: 700">Discord</span>
+              <span>Nhà trọ văn hóa</span>
+            </div>
+
+            <div
+              class="info-link phongto timezoom"
+              onclick="window.open('https://www.tiktok.com/@miriot7', '_blank')"
+            >
+              <img src="../logo/tiktok.png" class="to-white" />
+              <span style="font-size: 20px; font-weight: 700">Tiktok</span>
+              <span>Cậu út trường U</span>
+            </div>
+
+            <div
+              class="info-link phongto timezoom"
+              onclick="window.open('https://locket.cam/hieudooodz', '_blank')"
+            >
+              <img src="../logo/camera.png" class="to-white" />
+              <span style="font-size: 20px; font-weight: 700">Locket</span>
+              <span>Đỗ Hiếu</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-Right">
+          <h2
+            style="
+              margin: 20px 0;
+              text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+            "
+          >
+            MY INFORMATION
+          </h2>
+          <div class="info-name">
+            <h3 style="font-size: 40px" class="to-white">
+              👋 Hi, I'm Hiếu Thứ Hight
+            </h3>
+            <p>
+              I'm an intern from Vietnam, currently working on Machine Learning,
+              Deep Learning and Computer Vision.
+            </p>
+            <img
+              src="../hinhnen/anh_nen_quangcao (3).jpg"
+              class="info-banner"
+            />
+            <div class="fade-line"></div>
+            <h3 style="text-shadow: 0 0 10px rgba(255, 255, 255, 0.9)">
+              ABOUT ME
+            </h3>
+            <ul class="profile-rightul">
+              <li>🚀 Project: To-do List Website</li>
+              <li>🎮 Interest: Game, music, gym, talk,....</li>
+              <li>📩 Contact: hieud976@gmail.com</li>
+            </ul>
+
+            <div class="fade-line"></div>
+            <h3
+              style="
+                transform: scale(1.3);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+              "
+            >
+              LANGUAGE AND TOOLS
+            </h3>
+            <ul class="profile-icon">
+              <li>
+                <a
+                  href="https://vi.wikipedia.org/wiki/C%2B%2B"
+                  target="_blank"
+                  class="anhnho"
+                  ><img src="../logo/Cplusplus.png"
+                /></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.java.com/en/"
+                  target="_blank"
+                  class="anhnho"
+                  ><img src="../logo/java.png"
+                /></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.w3schools.com/sql/"
+                  target="_blank"
+                  class="anhnho"
+                  ><img src="../logo/sql.png"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.python.org/" target="_blank" class="anhnho"
+                  ><img src="../logo/python.png"
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Bên trên không có lỗi sai -->
+      <div class="fade-line"></div>
+      <div class="contact movien" id="Contact">
+        <h3>CONTACT</h3>
+      </div>
+      <div class="contact">
+        <div class="contact_left">
+          <h2>CONTACT INFORMATIO</h2>
+          <ul class="gmailleft">
+            <li class="gmailleft1 phongto timezoom">
+              <img src="../logo/email.png" />
+              hieud976@gmail.com
+            </li>
+            <li class="gmailleft1 phongto timezoom">
+              <img src="../logo/phone.png" />
+              Sorry, this project is currently under development, so I need to
+              keep it private. Please contact me via email or social media
+              channels.
+            </li>
+            <li class="gmailleft1 phongto timezoom">
+              <img src="../logo/map.png" />
+              353 Tran Hung Dao, Cua Bac, Nam Dinh, Viet Nam
+            </li>
+          </ul>
+          <ul class="gmailleft">
+            <li>
+              <h2>Connect on Social Media</h2>
+            </li>
+            <div class="email_icon">
+              <button class="email_icon1" id="emailNut_icon">
+                <a
+                  href="https://www.facebook.com/hieu.o.617087"
+                  target="_blank"
+                >
+                  <img src="../logo/facebook.png" />
+                </a>
+              </button>
+              <button class="email_icon1" id="emailNut_icon">
+                <a href="https://github.com/HieuThuHight" target="_blank">
+                  <img src="../logo/github.png" />
+                </a>
+              </button>
+              <button class="email_icon1" id="emailNut_icon">
+                <a href="https://www.youtube.com/@ohieu6998" target="_blank">
+                  <img
+                    src="../logo/youtube.png
+                  "
+                  />
+                </a>
+              </button>
+              <button class="email_icon1" id="emailNut_icon">
+                <a href="https://discord.gg/3zcVsZ5Apk" target="_blank">
+                  <img src="../logo/discord.png" />
+                </a>
+              </button>
+              <button class="email_icon1" id="emailNut_icon">
+                <a href="https://www.tiktok.com/@miriot7" target="_blank">
+                  <img src="../logo/tiktok.png" />
+                </a>
+              </button>
+            </div>
+          </ul>
+        </div>
+        <div class="contact_right">
+          <h2>SEND A MESSAGE</h2>
+          <form action="#">
+            <div class="input-box">
+              <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="name" id="name" required />
+              <label>Your name</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" id="email" required />
+              <label>Email</label>
+            </div>
+            <div class="input-boxmess">
+              <span class="icon"
+                ><ion-icon name="pencil-outline"></ion-icon
+              ></span>
+              <textarea id="message" required></textarea>
+              <!-- <input type="text" required /> -->
+              <label>Message</label>
+            </div>
+            <button class="send" onclick="sendMail()">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="profile.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

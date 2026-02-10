@@ -1,0 +1,825 @@
+:root {
+  --hearder: #fff;
+  --mo: aliceblue;
+  --phongto: rgba(255, 255, 255, 0.4);
+  --mau_nen: rgba(27, 25, 25, 0.9);
+  --mauinfo: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2)
+  );
+  --mauinfocenter: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.3)
+  );
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+html,
+body {
+  color: #fff;
+  scroll-behavior: smooth;
+  background-color: var(--mau_nen);
+}
+#welcome {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: url();
+  z-index: 6;
+  color: var(--hearder);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: clamp(0.7em, 2vw, 1.7em);
+  white-space: nowrap;
+}
+#welcome h1 {
+  margin-bottom: 40px;
+}
+#welcome p {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+#welcome button {
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: #00ff99;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#welcome button:hover {
+  transform: scale(1.1);
+}
+.hidden {
+  display: none;
+}
+.bg-video {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+  z-index: -3;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 20px;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  transition:
+    background 0.5s,
+    transform 0.2s;
+
+  --bg-opacity: 0; /* biến opacity */
+  background: rgba(2, 2, 2, var(--bg-opacity));
+}
+
+header:hover {
+  background-color: rgba(2, 2, 2, 0.9);
+}
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-size: clamp(1.2em, 2vw, 2em);
+  /* font-size: 2em; */
+  color: var(--hearder);
+  /* user-select: none; */
+  /* Ẩn logo đi */
+  opacity: 0;
+  /* vô hiệu hóa sự kiện */
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  cursor: pointer;
+}
+.logo.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: var(--hearder);
+  cursor: pointer;
+  user-select: none;
+}
+
+.navigation {
+  display: flex;
+  gap: clamp(5px, 1vw, 20px);
+}
+.navigation a {
+  position: relative;
+  font-size: clamp(8px, 2vw, 1.1em);
+  color: var(--hearder);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+  /* padding: 10px 14px; */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tạo hiệu ứng di chuyển dưới chân*/
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  background: var(--hearder);
+  width: 100%;
+  height: 3px;
+  border-radius: 30px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.navigation a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btnShare-popup {
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: var(--hearder);
+  font-weight: 500;
+  transition:
+    background 0.5s,
+    transform 0.2s;
+}
+
+.btnShare-popup:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.effect {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 5;
+}
+
+.nut {
+  display: flex;
+  align-items: center;
+  gap: clamp(3px, 2vw, 10px);
+  gap: 10px;
+  padding: 10px 20px;
+  border: none;
+  color: var(--mo);
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  border-radius: 50px;
+  font-size: clamp(0.3, 1vw, 0.86em);
+  /* Làm mờ */
+  backdrop-filter: blur(20px);
+}
+
+.btnMusic.active ion-icon {
+  animation: none;
+  /* animation: spin 2s linear infinite; */
+}
+
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nut ion-icon {
+  transform: rotate(0deg);
+  transition: transform 0.4s ease;
+}
+
+.nut.active ion-icon {
+  animation: slowSpin 6s linear infinite;
+}
+
+.box-center {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -20%);
+  top: 47%;
+  left: 50%;
+  /* Chặn xuống dòng */
+  white-space: nowrap;
+}
+.box-center h2 {
+  /* Khoảng cách các chữ cái */
+  letter-spacing: 5px;
+  /* Chỉnh sửa kích cỡ vừa với màn hình (size min, màn hình, size max)  */
+  font-size: clamp(1.2em, 4vw, 4em);
+  font-weight: 700;
+  transform: scale(1.2);
+  padding: 25px 0;
+  cursor: pointer;
+  color: var(--hearder);
+  text-shadow: 0 0 10px rgba(221, 83, 19, 0.9);
+}
+.box-center h3 {
+  color: var(--hearder);
+  /* font-size: 1.5em; */
+  font-size: clamp(0.8em, 2vw, 1.5em);
+  font-weight: 200;
+  letter-spacing: 4px;
+  padding: 25px 0;
+}
+.centerIcon {
+  display: flex;
+  gap: clamp(18px, 3vw, 40px);
+}
+.centerIcon button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.centerIcon button img {
+  width: clamp(18px, 4vw, 35px);
+  height: clamp(18px, 4vw, 35px);
+  filter: brightness(0) invert(1);
+  transition: filter 0.25s ease;
+  gap: 10px;
+}
+.centerIcon #emailNut_icon:hover {
+  transform: translateY(-5px);
+}
+.centerIcon button img:hover {
+  filter: none;
+}
+#emailNut_icon {
+  transition:
+    background 0.5s,
+    transform 0.2s;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+  margin-top: -4px;
+}
+.info-Left h2,
+.info-Right h2 {
+  font-size: clamp(1.1em, 2vw, 3em);
+}
+.info-Left {
+  background: rgba(255, 255, 255, 0.1);
+  flex: 1;
+  padding: 30px 0;
+  border-radius: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.info-link:hover img {
+  filter: none;
+}
+.info-Left .info-link {
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 30px;
+  margin: 10px 0;
+  width: 25vw;
+  height: 15%;
+  border-radius: 20px;
+}
+
+.info-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.info-link img {
+  margin: 15px auto;
+}
+
+.info-Right {
+  background-image: var(--mauinfo);
+  flex: 2;
+  font-size: 1.5em;
+  padding: 30px 0;
+  border-radius: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.info-Right .info-name {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2)
+  );
+  margin: 10px 0;
+  width: 80%;
+
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  padding: 12px 20px 40% 20px;
+  border-radius: 14px;
+  font-size: clamp(0.5em, 2vw, 1em);
+}
+
+.info-name .info-banner {
+  width: 90%;
+  min-height: 25vh;
+  background-size: contain;
+  border-radius: 50px;
+  padding: 15px 0;
+}
+.info-name p {
+  font-weight: 100;
+  font-size: 1em;
+}
+.info-name .profile-rightul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Contact*/
+.contact {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+}
+.contact h3 {
+  font-size: clamp(1.2em, 3vw, 3em);
+}
+.contact h2 {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.2em, 2vw, 4em);
+}
+.contact .contact_left {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex: 2;
+  width: 100%;
+  /* background-color: red; */
+  padding: 30px 20px;
+  margin: 50px 0px;
+}
+.gmailleft {
+  margin: auto;
+}
+.gmailleft1 {
+  background: var(--mauinfo);
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin: 20px 20px;
+  font-size: clamp(0.5em, 2vw, 1.5);
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.email_icon {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 20px;
+}
+/* Xóa phông nền trắng */
+.email_icon button {
+  transition:
+    background 0.5s,
+    transform 0.2s;
+  background-color: transparent;
+  border: none;
+}
+.email_icon button img {
+  width: clamp(18px, 4vw, 40px);
+  height: clamp(18px, 4vw, 40px);
+  /* TRẮNG */
+  filter: brightness(0) invert(1);
+  transition: filter 0.25s ease;
+}
+.email_icon button img:hover {
+  filter: none;
+}
+.contact .contact_right {
+  display: flex;
+  flex-direction: column;
+  background: var(--mauinfo);
+  flex: 3;
+  padding: 30px 20px;
+  margin: 50px 0;
+  border-radius: 20px;
+  gap: 20px;
+  font-size: clamp(0.5em, 2vw, 1.5);
+  width: 100%;
+  overflow: hidden;
+}
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  background: rgba(255, 255, 255, 0.08);
+  margin: 40px 0;
+  border-radius: 10px;
+}
+.input-box label {
+  position: absolute;
+  /* top:50%; */
+  top: 25px;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: var(--hearder);
+  font-weight: 500;
+  /* Vô hiệu hóa click */
+  pointer-events: none;
+  transition: 0.5s;
+}
+/* Khi nhấn vào input label phía sau sẽ di chuyển lên */
+.input-boxmess textarea:focus ~ label,
+.input-box input:focus ~ label,
+/* Nhập đúng input sẽ giữ nguyên vị trí */
+.input-boxmess textarea:valid ~ label,
+.input-box input:valid ~ label {
+  top: -20px;
+}
+
+/* mặc định */
+
+.input-box input,
+.input-boxmess textarea {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+/* Click vào sẽ đổi màu */
+.input-box:focus-within,
+.input-boxmess:focus-within {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 10px rgba(125, 211, 252, 0.6);
+}
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  /* background-color: red; */
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: var(--hearder);
+  font-weight: 600;
+  padding: 0 15px;
+  border-radius: 10px;
+}
+
+.input-box .icon {
+  position: absolute;
+  right: 20px;
+  font-size: 1.2em;
+  color: var(--hearder);
+  /* Chiều cao dòng chữ */
+  line-height: 57px;
+}
+.input-boxmess {
+  position: relative;
+  width: 100%;
+  height: 200px; /* chiều cao cố định */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  margin: 40px 0;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.input-boxmess textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+
+  padding: 0px 40px 10px 0;
+  font-size: 1em;
+  color: var(--hearder);
+  font-weight: 600;
+  line-height: 1.5;
+}
+.input-boxmess label {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  font-size: 1em;
+  color: var(--hearder);
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.input-boxmess .icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.2em;
+  color: var(--hearder);
+}
+.send {
+  background-color: aquamarine;
+  cursor: pointer;
+  width: 95%;
+  height: 60px;
+  border-radius: 20px;
+}
+/* music */
+.player {
+  width: 360px;
+  padding: 20px;
+  border-radius: 20px;
+  /* background: rgb(183, 106, 106); */
+  box-shadow: 0 10px 25px rgba(20, 192, 163, 0.2);
+
+  backdrop-filter: blur(200px);
+  text-align: center;
+  position: fixed;
+
+  bottom: 2%;
+  right: 38%;
+  z-index: 5;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+.player.active-popup {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+/* ===== TITLE ===== */
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: clamp(1em, 2vw, 2em);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ICON XOAY */
+.music-icon,
+.btnMusic {
+  display: inline-block;
+  animation: spin 2s linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* ===== TIME ===== */
+.time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* ===== PROGRESS ===== */
+#progress {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+  display: flex;
+  align-items: center; /* CHÌA KHÓA KHÔNG LỆCH */
+  justify-content: space-around;
+}
+
+.controls button {
+  width: 46px;
+  height: 46px;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center; /* icon giữa */
+  justify-content: center;
+}
+
+.btn-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* hover nhẹ */
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+.controls button ion-icon {
+  font-size: 26px;
+}
+
+/* Nút dành cho mobie */
+@media (max-width: 970px) {
+  header {
+    padding: 10px 15px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+
+    transition: transform 0.3s ease;
+  }
+  .menu-toggle.active {
+    transform: rotate(90deg);
+  }
+  .menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .navigation {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    padding: 20px;
+    gap: 16px;
+
+    background: rgba(2, 2, 2, 0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+
+    /* ẨN MENU */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+  }
+
+  /* khi click ☰ */
+  .navigation.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+
+    transition: 0.3s ease;
+  }
+
+  .navigation a {
+    margin-left: 0;
+    font-size: 1em;
+    padding: 10px;
+    width: 100%;
+
+    transition: 0.3s ease;
+  }
+  .navigation a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .navigation a::after {
+    display: none;
+  }
+  .navigation a:active {
+    transform: scale(0.97);
+  }
+}
+/* mobile để xuống dòng */
+@media (max-width: 800px) {
+  .info {
+    flex-direction: column;
+  }
+
+  .info-icon {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .info-icon span {
+    display: none;
+  }
+  .info-name .info-banner {
+    min-height: 20vh;
+  }
+  .contact {
+    display: flex;
+    flex-direction: column;
+  }
+  .player {
+    bottom: auto;
+    top: 10%;
+    right: 10px;
+    left: auto;
+    transform: scale(0.8);
+  }
+}
+
+/* Hiệu ứng */
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.phongto:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.timezoom {
+  transition:
+    background 0.5s,
+    transform 0.2s;
+}
+.to-white {
+  filter: brightness(0) invert(1);
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+.fade-line {
+  width: 80%;
+  height: 2px;
+  margin: 18px auto 22px auto;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.to-white {
+  filter: brightness(0) invert(1);
+}
+
+.movien {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+#emailNut_icon:hover {
+  transform: translateY(-5px);
+}
