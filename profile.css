@@ -25,6 +25,7 @@ body {
   color: #fff;
   scroll-behavior: smooth;
   background-color: var(--mau_nen);
+  overflow-x: hidden;
 }
 #welcome {
   position: fixed;
@@ -132,7 +133,7 @@ header:hover {
   font-size: clamp(8px, 2vw, 1.1em);
   color: var(--hearder);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   margin-left: 40px;
   /* padding: 10px 14px; */
   border-radius: 10px;
@@ -206,9 +207,18 @@ header:hover {
   backdrop-filter: blur(20px);
 }
 
-.btnMusic.active ion-icon {
-  animation: none;
-  /* animation: spin 2s linear infinite; */
+#musicBtn ion-icon {
+  animation: spin 3s linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes slowSpin {
@@ -245,8 +255,8 @@ header:hover {
   /* Khoảng cách các chữ cái */
   letter-spacing: 5px;
   /* Chỉnh sửa kích cỡ vừa với màn hình (size min, màn hình, size max)  */
-  font-size: clamp(1.2em, 4vw, 4em);
-  font-weight: 700;
+  font-size: clamp(1.2em, 4vw, 3.5em);
+  font-weight: 600;
   transform: scale(1.2);
   padding: 25px 0;
   cursor: pointer;
@@ -822,4 +832,33 @@ img {
 
 #emailNut_icon:hover {
   transform: translateY(-5px);
+}
+
+/* add snow */
+
+.snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden; /* tuyết ra ngoài sẽ bị ẩn */
+  z-index: 1;
+}
+
+.snow {
+  position: absolute;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  from {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(500px) translateY(1000px) rotate(360deg);
+    opacity: 0;
+  }
 }

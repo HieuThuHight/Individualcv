@@ -102,10 +102,6 @@ const songs = [
     file: "music/ScarsToYourBeautiful.mp3",
   },
   {
-    name: "Paper short love",
-    file: "music/Paper_Short_Love.mp3",
-  },
-  {
     name: "We can be together",
     file: "music/We_Can_Be_Together.mp3",
   },
@@ -121,6 +117,12 @@ const songs = [
     name: "Nơi này có anh",
     file: "music/Nơi_Này_Có_Anh.mp3",
   },
+
+  {
+    name: "Khác biệt",
+    file: "music/Different Love.mp3",
+  },
+  { name: "Vui lên!", file: "music/buồn một chút thôiiem  ơi.mp3" },
 ];
 
 let isShuffle = false;
@@ -140,6 +142,7 @@ const nextBtn = document.getElementById("next");
 const shuffleBtn = document.getElementById("shuffle");
 const repeatBtn = document.getElementById("repeat");
 const musicBtn = document.getElementById("musicBtn");
+const musicIcon = document.querySelector("#musicBtn ion-icon");
 
 const progress = document.getElementById("progress");
 const current = document.getElementById("current");
@@ -156,16 +159,21 @@ function playSong() {
 
   audio.play();
   isPlaying = true;
+
   playBtn.innerHTML = '<ion-icon name="pause" style="color:#fff;"></ion-icon>';
+
   icon.style.animationPlayState = "running";
-  // musicBtn.classList.add("active");
+  musicIcon.style.animationPlayState = "running"; // ✅ thêm dòng này
 }
 
 function pauseSong() {
   audio.pause();
   isPlaying = false;
+
   playBtn.innerHTML = '<ion-icon name="play" style="color:#fff;"></ion-icon>';
+
   icon.style.animationPlayState = "paused";
+  musicIcon.style.animationPlayState = "paused"; // ✅ thêm dòng này
 }
 
 playBtn.onclick = () => (isPlaying ? pauseSong() : playSong());
@@ -271,6 +279,7 @@ offBtn.addEventListener("click", () => {
   });
 
   pauseSong();
+  stopSnow();
   audio.currentTime = 0;
   musicBtn.classList.remove("active");
 });
@@ -284,8 +293,60 @@ enterBtn.addEventListener("click", () => {
   isEffectDisabled = false;
   welcome.style.display = "none";
   app.classList.remove("hidden");
+
+  // ✅ bật hiệu ứng
+  // enableEffect();
   playSong();
+  startSnow();
   firstInteraction = true;
 });
 
-// effect
+// snow
+const snowBtn = document.getElementById("snowBtn");
+const snowContainer = document.querySelector(".snow-container");
+
+let snowInterval = null;
+let isSnowing = false;
+
+function createSnow() {
+  if (snowContainer.childElementCount > 20) return; // giới hạn số lượng
+
+  const snow = document.createElement("img");
+  snow.src = "logo/snow.png";
+  snow.classList.add("snow");
+
+  const size = Math.random() * 15 + 10;
+  snow.style.width = size + "px";
+  snow.style.height = size + "px";
+  snow.style.left = Math.random() * window.innerWidth + "px";
+
+  const duration = Math.random() * 5 + 6;
+  snow.style.animationDuration = duration + "s";
+
+  snowContainer.appendChild(snow);
+
+  snow.addEventListener("animationend", () => {
+    snow.remove();
+  });
+}
+
+function startSnow() {
+  if (isSnowing) return;
+  isSnowing = true;
+  snowInterval = setInterval(createSnow, 400);
+  snowBtn.classList.add("active");
+}
+
+function stopSnow() {
+  isSnowing = false;
+  clearInterval(snowInterval);
+  snowContainer.innerHTML = "";
+  snowBtn.classList.remove("active");
+  snowInterval = null;
+}
+
+if (snowBtn) {
+  snowBtn.addEventListener("click", () => {
+    isSnowing ? stopSnow() : startSnow();
+  });
+}
