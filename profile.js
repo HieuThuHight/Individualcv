@@ -123,6 +123,7 @@ const songs = [
     file: "music/Different Love.mp3",
   },
   { name: "Vui lên!", file: "music/buồn một chút thôiiem  ơi.mp3" },
+  { name: "Way down we go", file: "music/Way Down We Go.mp3" },
 ];
 
 let isShuffle = false;

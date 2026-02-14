@@ -854,7 +854,7 @@ img {
 
 @keyframes fall {
   from {
-    transform: translateX(0) translateY(0) rotate(0deg);
+    transform: translateX(-300ox) translateY(0) rotate(0deg);
     opacity: 1;
   }
   to {
