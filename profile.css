@@ -135,7 +135,7 @@ header:hover {
   text-decoration: none;
   font-weight: 700;
   margin-left: 40px;
-  /* padding: 10px 14px; */
+  transform: translateX(-70%);
   border-radius: 10px;
   display: flex;
   align-items: center;

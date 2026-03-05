@@ -102,6 +102,10 @@ const songs = [
     file: "music/ScarsToYourBeautiful.mp3",
   },
   {
+    name: "Khác biệt",
+    file: "music/Different Love.mp3",
+  },
+  {
     name: "We can be together",
     file: "music/We_Can_Be_Together.mp3",
   },
@@ -118,12 +122,7 @@ const songs = [
     file: "music/Nơi_Này_Có_Anh.mp3",
   },
 
-  {
-    name: "Khác biệt",
-    file: "music/Different Love.mp3",
-  },
   { name: "Vui lên!", file: "music/buồn một chút thôiiem  ơi.mp3" },
-  { name: "Way down we go", file: "music/Way Down We Go.mp3" },
 ];
 
 let isShuffle = false;
