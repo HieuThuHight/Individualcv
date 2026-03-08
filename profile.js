@@ -59,6 +59,19 @@ logo.addEventListener("click", () => {
   });
 });
 
+//dừng video
+const video = document.querySelector(".bg-video");
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    // Khi chuyển sang tab khác
+    video.pause();
+  } else {
+    // Khi quay lại tab
+    video.play().catch(() => {});
+  }
+});
+
 // Contact
 function sendMail() {
   const name = document.getElementById("name").value.trim();
